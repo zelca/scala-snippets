@@ -1,4 +1,9 @@
-package object sorting {
+package sorting
+
+/**
+  * Insert sort + implicit class
+  */
+object Sorting extends App {
 
   def insert(item: Int, input: List[Int]): List[Int] = input match {
     case Nil => item :: Nil
@@ -11,12 +16,6 @@ package object sorting {
   implicit class SortableList(val list: List[Int]) {
     def sort = sorted(list)
   }
-
-}
-
-object SortingMain extends App {
-
-  import sorting._
 
   import scala.math.random
 

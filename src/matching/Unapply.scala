@@ -1,4 +1,9 @@
-package object unapply {
+package matching
+
+/**
+  * Example of unapply
+  */
+object Unapply extends App {
 
   case class Person(name: String, surname: String)
 
@@ -11,15 +16,7 @@ package object unapply {
 
   }
 
-}
-
-object UnapplyMain extends App {
-
-  val data = List("John Smith","aaa bbb","","not a person")
-
-  import unapply._
-
-  data.collect {
+  List("John Smith", "aaa bbb", "", "not a person").collect {
     case Person(person) => person
   } foreach println
 
