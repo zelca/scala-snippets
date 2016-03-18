@@ -18,16 +18,10 @@ object Simple extends App {
 
   val freq = mutable.Map.empty[Int, Int]
 
-  def square(input: List[Int]): List[Int] = {
-    type SquareMemo = Memo[Int, Int]
-
-    lazy val square: SquareMemo = Memo {
-      case x =>
-        freq.put(x, freq.getOrElse(x, 0) + 1)
-        x * x
-    }
-
-    input.map(square(_))
+  lazy val square: Memo[Int, Int] = Memo {
+    case x =>
+      freq.put(x, freq.getOrElse(x, 0) + 1)
+      x * x
   }
 
   import scala.math.random
@@ -36,9 +30,9 @@ object Simple extends App {
 
   println(input.groupBy(x => x).mapValues(_.size).toList.sortBy(_._1))
 
-  println(freq.toList.sortBy(_._1))
+  println(input.map(square(_)))
 
-  println(square(input))
+  println(freq.toList.sortBy(_._1))
 
 }
 
